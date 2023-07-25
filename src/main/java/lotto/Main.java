@@ -1,6 +1,6 @@
-package org.v1;
+package lotto;
 
-import java.util.List;
+import java.util.Set;
 
 public class Main {
 
@@ -13,13 +13,13 @@ public class Main {
 
     //현금을 낸다  ->  로또발급개수를 계산한다  -> 개수만큼 발행요청 -> 로또번호 발급
 
-    Customer cr = new Customer();
-
-    int money = cr.gerOrder();
-
-    List<List<Integer>> lottoNums = Employee.getLottoNums(money);
-
-    System.out.println("lottoNums = " + lottoNums);
+//    Customer cr = new Customer();
+//
+//    int money = cr.gerOrder();
+//
+//    List<List<Integer>> lottoNums = Employee.getLottoNums(money);
+//
+//    System.out.println("lottoNums = " + lottoNums);
 
 //    cr.setNums(lottoNums);
 //
@@ -33,6 +33,12 @@ public class Main {
 //    List<List<Integer>> lottos = LottoV2.getLottos(1000);
 //
 //    System.out.println("lottos = " + lottos);
+
+    Set<Integer> luckyNumsV2 = Lotto.getLuckyNumsV2();
+
+    System.out.println("luckyNumsV2 = " + luckyNumsV2);
+    System.out.println(luckyNumsV2.getClass());
+
 
   }
 

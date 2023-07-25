@@ -2,8 +2,10 @@ package jmh;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
@@ -13,9 +15,8 @@ import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
-import org.v1.Employee;
-import org.v1.Lotto;
-import org.v1.LottoV2;
+import lotto.Lotto;
+import lotto.LottoV2;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
@@ -38,17 +39,23 @@ public class Bench {
   }
 
 
-  @Benchmark
-  public void lottoV1Sum() {
+//  @Benchmark
+ public void lottoV1Sum() {
     List<List<Integer>> lottos = Lotto.getLottos(100000);
     Lotto.getSum(lottos);
-
   }
 
   @Benchmark
   public void lottoV2Sum() {
     List<List<Integer>> lottos = Lotto.getLottos(100000);
     LottoV2.getSum(lottos);
+  }
+
+  // 병려스트림이 훨씬 빠르다.
+  @Benchmark
+  public void lottoV3Sum(){
+    List<List<Integer>> lottos = Lotto.getLottos(100000);
+    LottoV2.getSumV3(lottos);
   }
 
 
@@ -108,6 +115,38 @@ public class Bench {
 
 
     }
+
+    // List가 더 빠르다.
+
+//    @Benchmark
+    public void oldGenerate() {
+
+      Stream.generate(Lotto::generateLottoNums).limit(100).collect(Collectors.toList());
+
+    }
+
+//   @Benchmark
+   public void newGenerate() {
+
+     Stream.generate(Lotto::generateLottoNumsV2).limit(100).collect(Collectors.toList());
+
+   }
+
+   //계산또한 List가 더 빠르다.
+
+//   @Benchmark
+  public void oldLottoV2Sum() {
+    List<List<Integer>> lottos = Lotto.getLottos(100000);
+    LottoV2.getSum(lottos);
+  }
+
+//  @Benchmark
+  public void newLottoV2Sum() {
+    List<Set<Integer>> lottos = Lotto.getLottosV2(100000);
+    LottoV2.getSumV2(lottos);
+  }
+
+
 
 
 

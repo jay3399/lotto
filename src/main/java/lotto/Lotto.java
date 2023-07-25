@@ -1,7 +1,13 @@
-package org.v1;
+package lotto;
 
 import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.SortedSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,10 +37,33 @@ public class Lotto {
     return collect2;
 }
 
+  public static List<Set<Integer>> getLottosV2(int lottoCount) {
 
-  private static List<Integer> generateLottoNums() {
+
+    List<Set<Integer>> collect2 = Stream.generate(() -> generateLottoNumsV2()).limit(lottoCount)
+        .collect(Collectors.toList());
+
+//    System.out.println("로또발행 :" + collect2);
+
+    return collect2;
+  }
+
+
+  public static List<Integer> generateLottoNums() {
     List<Integer> collect1 = Stream.generate(() -> getRandom()).distinct().limit(6).sorted()
         .collect(Collectors.toList());
+    return collect1;
+  }
+
+  //LinkedHashSet을 사용한다해서 , 자동으로 정렬이되는것이아닌 , sortedr기능을  사용할수있는것.
+
+  public static Set<Integer> generateLottoNumsV2() {
+    Set<Integer> collect1 = Stream.generate(() -> getRandom()).distinct().limit(6).sorted()
+        .collect(Collectors.toCollection(LinkedHashSet::new));
+
+
+
+
     return collect1;
   }
 
@@ -109,9 +138,15 @@ public class Lotto {
   }
 
 
-  private static List<Integer> getLuckyNums() {
+  public static List<Integer> getLuckyNums() {
     return Stream.generate(() -> generateLottoNums()).limit(1).toList()
         .stream().flatMap(List::stream).toList();
+  }
+
+  public static Set<Integer> getLuckyNumsV2() {
+    return Stream.generate(() -> generateLottoNums()).limit(1)
+        .collect(Collectors.toCollection(LinkedHashSet::new))
+        .stream().flatMap(List::stream).collect(Collectors.toCollection(LinkedHashSet::new));
   }
 
 

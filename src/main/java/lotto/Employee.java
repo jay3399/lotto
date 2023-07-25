@@ -1,4 +1,4 @@
-package org.v1;
+package lotto;
 
 import java.util.List;
 
