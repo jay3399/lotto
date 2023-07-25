@@ -1,4 +1,4 @@
-package org.example;
+package org.v1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ public class Customer {
 //  private int money = 10000;
   private List<List<Integer>> lottoNums = new ArrayList<>();
 
-  private int money = 100000000;
+  private int money = 10000000;
 
   public int gerOrder(
   ) {

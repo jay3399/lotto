@@ -1,4 +1,4 @@
-package org.example;
+package org.v1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class Lotto {
   List<List<Integer>> collect2 = Stream.generate(() -> generateLottoNums()).limit(lottoCount)
       .collect(Collectors.toList());
 
-    System.out.println("로또발행 :" + collect2);
+//    System.out.println("로또발행 :" + collect2);
 
     return collect2;
 }
@@ -46,18 +46,18 @@ public class Lotto {
   public static int getWins(List<List<Integer>> nums) {
 
     int sum = getSum(nums);
-    System.out.println("당첨금액: " + sum);
+//    System.out.println("당첨금액: " + sum);
 
     return sum;
 
 
   }
 
-  private static int getSum(List<List<Integer>> nums) {
+  public static int getSum(List<List<Integer>> nums) {
 
     List<Integer> luckyNums = getLuckyNums();
 
-    System.out.println("당첨번호 : " + luckyNums);
+//    System.out.println("당첨번호 : " + luckyNums);
 
     List<Integer> Calculator = new ArrayList<>();
 

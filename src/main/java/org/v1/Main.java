@@ -1,12 +1,11 @@
-package org.example;
+package org.v1;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Main {
+
+  public Main() {
+  }
 
   public static void main(String[] args) {
 
@@ -20,27 +19,29 @@ public class Main {
 
     List<List<Integer>> lottoNums = Employee.getLottoNums(money);
 
-    cr.setNums(lottoNums);
+    System.out.println("lottoNums = " + lottoNums);
 
-    Lotto.getWins(cr.getNums());
+//    cr.setNums(lottoNums);
+//
+//    Lotto.getWins(cr.getNums());
 
 
     // 추첨
 
     // 추첨한다 -> 로또번호발급 -> 대조한다 -> 6개일치시 20억 , 5개 + 보너스 3천만원 , 5개 150만원 , 4개 5만원 , 3개 5천원 -> 수익률계산한다
 
-
-
-
+//    List<List<Integer>> lottos = LottoV2.getLottos(1000);
+//
+//    System.out.println("lottos = " + lottos);
 
   }
 
 
 
 
-  private static int getCount(int money) {
-    return Math.round(money / 1000);
-  }
+//  private static int getCount(int money) {
+//    return Math.round(money / 1000);
+//  }
 
 
 
