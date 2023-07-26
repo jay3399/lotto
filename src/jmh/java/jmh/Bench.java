@@ -6,6 +6,8 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lotto.LottoV3;
+import lotto.LottoV5;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
@@ -45,18 +47,19 @@ public class Bench {
     Lotto.getSum(lottos);
   }
 
-  @Benchmark
+//  @Benchmark
   public void lottoV2Sum() {
     List<List<Integer>> lottos = Lotto.getLottos(100000);
     LottoV2.getSum(lottos);
   }
 
   // 병려스트림이 훨씬 빠르다.
-  @Benchmark
+//  @Benchmark
   public void lottoV3Sum(){
     List<List<Integer>> lottos = Lotto.getLottos(100000);
     LottoV2.getSumV3(lottos);
   }
+
 
 
 //  @Benchmark
@@ -145,6 +148,53 @@ public class Bench {
     List<Set<Integer>> lottos = Lotto.getLottosV2(100000);
     LottoV2.getSumV2(lottos);
   }
+
+
+//  @Benchmark
+  public void LottoV3Generate() {
+
+    LottoV3.getLottos(100000);
+
+  }
+
+  // V5가 더 빠르다.
+  // why -> generate 를 두번씩이나 돌린다.
+
+
+//  @Benchmark
+  public void LottoV5Generate() {
+
+    LottoV5.getLottos(100000);
+  }
+
+  // TreeSet을 사용해서 , 중복 정렬 스트림과정을 생략할수있다.
+//  @Benchmark
+  public void LottoV5WithTree() {
+
+    LottoV5.getLottosV2(100000);
+
+  }
+
+
+  // Sum -> HashSet vs TreeSet  , TreeSet 이 더 빠르다.
+  // 비교는 HashSet이 더 빠르겠지만 번호생성쪽에서 중복, 정렬을 그냥 가져갈수있기때문에 TreeSet이 더 빠르다.
+  // HashSet이 hashtable 을 이용해서 삽입 , 삭제 , 조회가 더 빠르긴하지만 O(1)  , 아래는 비교보다는 생성!을 더 많이하기떄문에 정렬을 디폴트로 가져갈수있다는게 메리트가 큰듯하다.
+  @Benchmark
+  public void LottoV5Sum() {
+
+    LottoV5.calculateTotalPrize(LottoV5.getLottos(200000), LottoV5.getLuckyNumbers());
+
+  }
+
+  @Benchmark
+  public void LottoV5WithTreeSum() {
+
+    LottoV5.calculateTotalPrizeV2(LottoV5.getLottosV2(200000), LottoV5.getLuckyNumbersV2());
+
+  }
+
+
+
 
 
 

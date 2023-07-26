@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.List;
 import java.util.Set;
 
 public class Main {
@@ -34,10 +35,10 @@ public class Main {
 //
 //    System.out.println("lottos = " + lottos);
 
-    Set<Integer> luckyNumsV2 = Lotto.getLuckyNumsV2();
-
-    System.out.println("luckyNumsV2 = " + luckyNumsV2);
-    System.out.println(luckyNumsV2.getClass());
+//    Set<Integer> luckyNumsV2 = Lotto.getLuckyNumsV2();
+//
+//    System.out.println("luckyNumsV2 = " + luckyNumsV2);
+//    System.out.println(luckyNumsV2.getClass());
 
 
   }
