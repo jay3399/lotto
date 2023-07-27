@@ -164,7 +164,7 @@ public class Bench {
 //  @Benchmark
   public void LottoV5Generate() {
 
-    LottoV5.getLottos(100000);
+//    LottoV5.getLottos(100000);
   }
 
   // TreeSet을 사용해서 , 중복 정렬 스트림과정을 생략할수있다.
@@ -182,14 +182,14 @@ public class Bench {
   @Benchmark
   public void LottoV5Sum() {
 
-    LottoV5.calculateTotalPrize(LottoV5.getLottos(200000), LottoV5.getLuckyNumbers());
+//    LottoV5.calculateTotalPrize(LottoV5.getLottos(200000), LottoV5.getLuckyNumbers());
 
   }
 
   @Benchmark
   public void LottoV5WithTreeSum() {
 
-    LottoV5.calculateTotalPrizeV2(LottoV5.getLottosV2(200000), LottoV5.getLuckyNumbersV2());
+//    LottoV5.calculateTotalPrizeV2(LottoV5.getLottosV2(200000), LottoV5.getLuckyNumbersV2());
 
   }
 
